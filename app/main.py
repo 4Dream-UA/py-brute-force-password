@@ -51,8 +51,10 @@ def brute_force_password() -> None:
 
     passwords = []
     for future in futures:
-        print(f"{future.result():08d}")
         passwords.extend(future.result())
+
+    for password in passwords:
+        print(f"{password:08d}")
 
     print(len(passwords))
 
