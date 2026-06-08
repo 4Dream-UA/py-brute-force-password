@@ -41,7 +41,6 @@ def brute_force_password() -> None:
 
     with ProcessPoolExecutor(max_workers=workers) as executor:
         for i in range(workers):
-            print(i)
             task_start = start_num + i * chunk
             task_end = (
                 start_num + (i + 1) * chunk if i < workers - 1 else end_num
@@ -52,9 +51,10 @@ def brute_force_password() -> None:
 
     passwords = []
     for future in futures:
+        print(f"{future.result():08d}")
         passwords.extend(future.result())
 
-    print({len(passwords): passwords})
+    print(len(passwords))
 
 if __name__ == "__main__":
     start_time = time.perf_counter()
